@@ -1,0 +1,39 @@
+body {
+    font-family: sans-serif; 
+    margin:0; 
+}
+
+button {
+    border-radius: 2rem;
+    background: yellow;
+    opacity: .75;
+}
+
+img {
+    width: auto;
+    height: auto;
+    max-width: 50%;
+    max-height: 50%;
+}
+
+input {
+    justify-content: center;
+    align-self: center;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.container { 
+    display: flex; 
+    min-height: 100vh; 
+    align-items: stretch; 
+}
+
+.column { 
+    background: goldenrod; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    flex:1; 
+}

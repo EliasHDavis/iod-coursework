@@ -1,0 +1,3 @@
+As a user I should be able to choose what die I want to roll.
+
+With the chosen die I should be able to roll it to get a random number in its range.

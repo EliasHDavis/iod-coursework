@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lab-8.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        <!--Top Row of three dice-->
+        <div id="topRow">
+            <div class="set">
+                <img src="/iod/module-1/d4.jpg" alt="d4"><br>
+                <button id="d4" onclick="roll(1,4)">Roll D4</button>
+            </div>
+            <div class="set">
+                <img src="/iod/module-1/d6.jpg" alt="d6"><br>
+                <button id="d6" onclick="roll(1,6)">Roll D6</button>
+            </div>
+            <div class="set">
+                <img src="/iod/module-1/d8.jpg" alt="d8"><br>
+                <button id="d8" onclick="roll(1,8)">Roll D8</button>
+            </div>
+        </div>
+        <!--Bottom Row of two dice-->
+        <div id="bottomRow">
+            <div class="set">
+                <img src="/iod/module-1/d12.jpg" alt="d12"><br>
+                <button id="d10" onclick="roll(1,12)">Roll D12</button>
+            </div>
+            <div class="set">
+                <img src="/iod/module-1/d20.jpg" alt="d20"><br>
+                <button id="d20" onclick="roll(1,20)">Roll D20</button> 
+            </div>
+        </div>    
+    </div>
+</body>
+<script src="lab-8.js"></script>
+</html>

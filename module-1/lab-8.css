@@ -1,0 +1,50 @@
+body {
+    background-image: url(wood.jpg) ;
+}
+
+button {
+    background-color: rgb(228, 182, 76);
+    color: black;
+    font-weight: bolder;
+    opacity: .75;
+    border-radius: 1rem;
+    max-height: 50%;
+    height: 50px;
+}
+
+img {
+    max-width: 40%;
+    max-height: 40%;
+    width: auto;
+    height: auto;
+}
+
+/* id styles*/
+
+#main {
+    height: fill;
+}
+
+#topRow {
+    column-count: 3;
+    column-fill: balance;
+    height: 50%;
+    justify-items: center;
+}
+
+#bottomRow {
+    height: 50%;
+    column-fill: balance;
+    column-count: 2;
+    column-width: 50%;
+}
+
+/* Class styles */
+
+.set {
+    float: left;
+    justify-content: center;
+    position: relative;
+    left: 25%;
+    top: 25%;
+}

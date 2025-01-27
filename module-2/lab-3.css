@@ -1,0 +1,119 @@
+body {
+    margin: 0px;
+    font-family: "PT Sans", sans-serif;
+}
+
+nav {
+    background: rgb(0, 0, 90);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-family: "PT Sans", sans-serif;
+}
+
+footer {
+    background: rgb(0, 0, 90);
+}
+
+p {
+    font-family: serif;
+}
+
+/* Class styles */
+
+.icon {
+    border: 2rem solid black;
+    border-radius: 50%;
+    margin-left: 50px;
+}
+
+.profile {
+    border: 2rem solid black;
+    border-radius: 50%;
+}
+
+.hamburg {
+    border: 2rem solid black;
+    margin-right: 50px;
+}
+
+.navLink {
+    color: white;
+    text-decoration: none;
+}
+
+.heroDiv {
+    display: flex;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.middle {
+    padding-left: 10px;
+    border-left: 1px solid black;
+}
+
+.divider {
+    border-bottom: 1px solid rgb(69, 69, 69) ;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.noUnderline {
+    text-decoration: none;
+    color: black;
+}
+
+.spacer {
+    width: 20px;
+}
+
+/* ID styles */
+
+#logo {
+    display: flex;
+}
+
+#links {
+    display: flex;
+    justify-content: space-evenly;
+    width: 850px;
+}
+
+#moreInfo {
+    display: flex;
+}
+
+#ad {
+    color: black;
+    text-decoration: none;
+}
+
+#adDiv {
+    background-color: rgb(235, 235, 235);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#musk {
+    display: flex;
+}
+
+#footerLinks {
+    font-family: "PT Sans", sans-serif;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    margin-left: 10%;
+}

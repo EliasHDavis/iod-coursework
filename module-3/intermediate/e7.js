@@ -20,13 +20,12 @@ const books = [
     }
     getOldBooks();
 
-    /*
-    function addGenre(){
-      let withGenre = books.map(book => {...book, genre: 'Classic'});
+    function addGenre() {
+      let withGenre = books.map(book => book. genre = 'Classic' ); 
       return withGenre;
     }
     console.log(addGenre());
-    */
+    
    
     function getTitles(letter){
       let titles = books.filter(book => book.author[0] == letter);

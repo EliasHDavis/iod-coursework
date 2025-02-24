@@ -1,15 +1,12 @@
 const ucFirstCharacters = function(sentence = 'string'){
-    let broken = sentence.split(' ');
-    let finished = '';
-    for(let i = 0; i < broken.length; i++){
-      let temp = broken[i];
-      let letter = broken[i][0].toUpperCase();
-      console.log(letter)
-      temp = (temp[1] = letter);
-      //doesnt replace original
-      finished += temp + ' ';
-    }
-    console.log(finished);
+  let words = sentence.split(' ');
+  let finished = '';
+  for(let i = 0; i < words.length; i++){
+    let temp = words[i];
+    finished += words[i].charAt(0).toUpperCase() + words[i].substring(1) + ' ';
+  }
+finished = finished.trim();
+console.log(finished);
 }
 
 ucFirstCharacters('This is a sentence to be used.');

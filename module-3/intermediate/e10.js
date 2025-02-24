@@ -4,36 +4,34 @@ console.log(today.getHours() + ' hours have passed so far today');
 console.log(today.getHours()*60 + today.getMinutes() + ' minutes have passed today');
 console.log(today.getHours()*360 + today.getSeconds() + ' seconds have passed today');
 
-const birth = new Date('2003-11-11');
+const birth = new Date('2003-12-12');
 console.log('\n' + birth);
+
+function howOld(){
+  let years = today.getFullYear() - birth.getFullYear();
+  let months = today.getMonth() - birth.getMonth();
+  let days = today.getDate() - birth.getDate();
+  if (days < 0) {
+    months = months - 1; 
+    days += 30; 
+  }
+  if (months < 0) {
+    years -= 1;
+    months += 12;
+  }
+  console.log( `I am ${years} years, ${months} months, and ${days} days old`);
+}
+howOld();
 
 function inBetween(date1,date2){
   if (date1 > date2){
-    year = date1.getYear() - date2.getYear();
-    month = date1.getMonth() - date2.getMonth();
-    if (month < 0){
-      year = year - 1;
-      month = month + 11;
-    }
-    day = date1.getDay() - date2.getDay();
-    if (day < 0){
-      month = month - 1
-      day = day + 30
-    }
-    return `I am ${year} years, ${month} months, and ${day} days old`
+    let difference = date1 - date2;
+    let holder = new Date(difference);
+    console.log((holder.getFullYear() - 1970) + ' years, ' + holder.getMonth() + ' months, and ' + holder.getDate() + ' days between the two dates.');
   }else{
-    year = date2.getYear() - date1.getYear();
-    month = date2.getMonth() - date1.getMonth();
-    if (month < 0){
-      year = year - 1;
-      month = month + 11;
-    }
-    day = date2.getDay() - date1.getDay();
-    if (day < 0){
-      month = month - 1
-      day = day + 30
-    }
-    return `I am ${year} years, ${month} months, and ${day} days old`
+    let difference = date2 - date1;
+    let holder = new Date(difference);
+    console.log((holder.getFullYear() - 1970) + ' years, ' + holder.getMonth() + ' months, and ' + holder.getDate() + ' days between the two dates.');
   }
 }
 console.log(inBetween(today, birth));

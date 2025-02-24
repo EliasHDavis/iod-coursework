@@ -7,23 +7,19 @@ console.log(animals);
 animals.unshift("Rabbit", "Dog");
 console.log(animals);
 
-//console.log(animals.sort((a, b) => a - b));
+console.log(animals.sort);
 
 const replaceMiddleAnimal = function(newAnimal){
      let middle = Math.ceil(animals.length/2);
      animals[middle] = newAnimal
      console.log(animals)
 };
-replaceMiddleAnimal('slamander');
+replaceMiddleAnimal('Slamander');
 
-/*
 const findMatchingAnimals = function(letter){
-    let filteredAnimals = animals.filter()
+    let filteredAnimals = animals.filter(animal =>
+      animal.startsWith(letter))
     console.log(filteredAnimals)
 };
 
-
-e) Write a function findMatchingAnimals(beginsWith) that returns a new array
-containing all the animals that begin with the beginsWith string. Try to make it work
-regardless of upper/lower case.
-*/
+findMatchingAnimals('A');

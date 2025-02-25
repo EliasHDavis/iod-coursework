@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.5.0/build/global/luxon.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const DateTime = luxon.DateTime;
+        //#1
+        let birthday = DateTime.local(2003, 11, 11);
+        let today = DateTime.local();
+
+        function daysTilBirthday() {
+            let nextBirthday = birthday.set({ year: today.year });
+            if (nextBirthday < today) {
+                nextBirthday = nextBirthday.plus({ years: 1 });
+            }
+            const days = Math.floor(nextBirthday.diff(today, "days").days);
+            console.log(days);
+        }
+        daysTilBirthday();
+
+        //#2
+        function howOld() {
+            let years = today.year - birthday.year;
+            let months = today.month - birthday.month;
+            let days = today.day - birthday.day;
+            if (days < 0) {
+                months = months - 1;
+                days += 30;
+            }
+            if (months < 0) {
+                years -= 1;
+                months += 12;
+            }
+            console.log(`I am ${years} years, ${months} months, and ${days} days old`);
+        }
+        howOld();
+
+        //#3
+        let date1 = DateTime.local();
+        let date2 = DateTime.local();
+        const whichFirst = (d1, d2) => {
+            if (d1 > d2){
+                return console.log('Date 1 is closer to the current date.');
+            }else{
+                return console.log('Date 2 is closer to the current date.');
+            }
+        }
+        whichFirst(date1, date2);
+
+        //#4
+        const beforeAfter = (d1, d2) => {
+            if (d1 > d2){
+                return console.log('Date 1 is after date 2.');
+            }else{
+                return console.log('Date 1 is before date 2.');
+            }
+        }
+        beforeAfter(date1, date2);
+
+        //#5
+        let local = DateTime.local();
+        let overrideZoneLondon = DateTime.fromISO(local, {zone: "Europe/London"});
+        console.log(overrideZoneLondon.toString());
+    </script>
+</body>
+</html>

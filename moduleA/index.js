@@ -1,0 +1,1 @@
+//moduleA index.js

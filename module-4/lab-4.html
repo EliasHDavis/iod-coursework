@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box { 
+        background-color: blueviolet;
+        height: 100px;
+        width: 100px;
+        animation-name: slide;
+        animation-duration: 3s;
+        animation-iteration-count: infinite; }
+        @keyframes slide {
+        from { margin-top: 0%; }
+        50% {margin-top: 50%; background-color: red;}
+        to { margin-top: 0; background-color: blue;}
+        }
+        </style>
+</head>
+<body>
+    <div id = "box"></div>
+</body>
+</html>

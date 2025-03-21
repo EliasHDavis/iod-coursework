@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCharts</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+</head>
+
+<body>
+    <!-- Prepare a DOM with a defined width and height for ECharts -->
+    <div id="main" style="width: 900px;height:600px;"></div>
+    <script type="text/javascript">
+        //-------Get Categories---------
+        const categories = new Map();
+
+        let options = {
+                    title: { text: 'Fake Store Categories' },
+                    xAxis: {
+                        data: []
+                    },
+                    yAxis: {},
+                    series: {
+                        name: '# products',
+                        type: 'bar',
+                        data: []
+                    }
+                };    
+
+        fetch('https://fakestoreapi.com/products')
+            .then((responce) => responce.json())
+            .then((products) => {
+                for (let product of products){
+                    if (!categories.get(product.category)){
+                        categories.set(product.category, 1)
+                    }else{
+                    let placeHolder = categories.get(product.category) + 1;
+                    categories.set(product.category, placeHolder);
+                    }
+                } 
+                options.xAxis.data = Array.from(categories.keys());
+                options.series.data = Array.from(categories.values()); //has to be array
+                console.log(categories)
+            })
+            .then(() => {
+                // Display the chart
+                myChart.setOption(options);
+            })
+
+        // Initialize the echarts instance based on the prepared div
+        let myChart = echarts.init(document.getElementById('main'));
+    </script>
+</body>
+
+</html>

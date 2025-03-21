@@ -1,0 +1,151 @@
+/* #calc{
+    display: flex;
+    justify-content: flex-start;
+    background-color: gray;
+    width: 500px;
+    height: 650px;
+}
+
+#display{
+    display: flex;
+    background-color: bisque;
+    border: 1px solid black;
+    max-height: 25x;
+}
+
+#numButtons{
+    display: inline-flex;
+    border: 1px solid black;
+    min-width: 499px;
+}
+
+#funcButtons{
+    display: flex;
+}
+
+.numDisplay{
+    border: 1 solid black;
+    width: 200px;
+}
+
+.button{
+    border: 1rem solid black;
+    border-radius: 50%;
+} */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+#calc {
+    width: 500px;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#display {
+    background-color: #444;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: right;
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#num1 {
+    background-color: rgb(230, 231, 208);
+    border: 5px solid rgb(0, 0, 0);
+    font-size: 36px;
+    color: #222;
+    width: 50%;
+    height: 70px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#num1:hover {
+    background-color: rgb(187, 188, 173);
+}
+#num2 {
+    background-color: rgb(230, 231, 208);
+    border: 5px solid rgb(0, 0, 0);
+    font-size: 36px;
+    color: #222;
+    width: 50%;
+    height: 70px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#num2:hover {
+    background-color: rgb(187, 188, 173);
+}
+
+#buttonsContainer {
+    display: flex;
+    gap: 10px;
+}
+
+#numButtons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#funcButtons {
+    display: grid; 
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.button {
+    background-color: #666;
+    color: white;
+    width: 65px;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #888;
+}
+
+#clear {
+    background-color: #d9534f;
+}
+
+#clear:hover {
+    background-color: #c9302c;
+}
+
+#plus, #minus, #divide, #multiply {
+    background-color: #f0ad4e;
+}
+
+#plus:hover, #minus:hover, #divide:hover, #multiply:hover {
+    background-color: #ec971f;
+}

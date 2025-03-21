@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #231808;
+        }
+        .card {
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 5%;
+        background-color: bisque;
+        max-width: 500px;
+        }
+        .card-title {
+        font-weight: 600;
+        font-size: 3em;
+        padding: 0 0 10px 0;
+        }
+        .card-description {
+        font-weight: 400;
+        font-size: 2em
+        }
+        .card-pic{
+            max-width: 495px
+        }
+    </style>
+<body>
+    <template id="card-template">
+        <div class="card">
+            <div class="card-body"></div>
+            <div class="card-title"></div>
+            <div class="card-text"></div>
+            <template id="artwork">
+                <div class="art-title"></div>
+                <img class="card-pic">
+                <!-- <div id="place-holder"></div> -->
+            </template>
+        </div>
+    </template>
+    <div id="card-list"></div>
+
+    <script>
+        
+        function addCard(data) {
+        // clone the template
+            for(let i = 0; i < data.length; i++){
+                const template = document.getElementById("card-template").content.cloneNode(true);
+                // populate the template
+                template.querySelector('.card-title').innerText = data[i].name;
+                template.querySelector('.card-text').innerText = data[i].age;
+                // include the populated template into the page
+                document.querySelector('#card-list').appendChild(template);
+            }
+        }
+
+        
+        const users = [
+            {name: 'bob', age: 23},
+            {name: 'alice', age: 23},
+            {name: 'ashley', age: 23},
+            {name: 'kobe', age: 23}
+        ];
+        
+        //addCard(users);
+
+        const vanGogh = {
+            name: "Van Gogh",
+            portfolio:[
+            {title: "portrait", url: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/436532/1671316/main-image"},
+            {title: "sky", url: "https://mymodernmet.com/wp/wp-content/uploads/2020/11/White-house-night-van-goh-worldwide-2.jpg"},
+            ]
+        }
+
+        function artistCard(artist){
+            const template = document.getElementById("card-template").content.cloneNode(true);
+            template.querySelector('.card-title').innerText = artist.name;
+            document.querySelector('#card-list').appendChild(template);
+            for(let i = 0; i < artist.portfolio.length; i++){
+                let artistWorks = document.getElementById("artwork").content.cloneNode(true);
+                artistWorks.querySelector('.art-title').innerText = artist.portfolio[i].title;
+                artistWorks.querySelector('.card-pic').src = artist.portfolio[i].url;
+                document.querySelector('.card-text').appendChild(artistWorks);
+            } 
+            
+        }
+
+        artistCard(vanGogh);
+        
+    </script>
+</body>
+</html>

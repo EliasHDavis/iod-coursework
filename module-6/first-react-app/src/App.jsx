@@ -3,9 +3,10 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import {Greeting} from './Greeting'
-import {BigCats} from './bigCats'
+import {BigCats} from './BigCats'
 import { Emoji } from './Emoji'
 import { AddCat } from './BIgCatsForm'
+import { BitcoinRates } from './BitcoinRates'
 
 
 
@@ -15,9 +16,11 @@ function App() {
   return (
     <>
       {/* <Greeting name='Josh'/>
-      <Emoji /> */}
+      <Emoji /> 
       <BigCats /> 
-      
+      */}
+       
+      <BitcoinRates />
 
       <div>
         <a href="https://vite.dev" target="_blank">

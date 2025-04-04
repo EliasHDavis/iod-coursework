@@ -16,9 +16,14 @@ export function BigCats(props) {
     const [currentCats, setCurrentCats] = useState(catArray);
 
 
-    const handleCats = (newCat) => {
+    const handleAddCat = (newCat) => {
         newCat.id = currentCats.length + 1;
-        setCurrentCats([...currentCats], newCat);
+        setCurrentCats([...currentCats, newCat]);
+    }
+
+    const handleRemoveCat = (removeCat) => {
+        let newCats = currentCats.filter(cat => cat.id != removeCat);
+        setCurrentCats(newCats);
     }
 
 
@@ -55,6 +60,7 @@ export function BigCats(props) {
                         key={cat.id} 
                         name={cat.name}
                         latinname={cat.latinname}
+                        onRemoveCat={handleRemoveCat}
                     >{cat.name}
                     <br/>
                     <img src={cat.src} style={{maxWidth: 150}}/>

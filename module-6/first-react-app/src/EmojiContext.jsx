@@ -1,12 +1,13 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
+
 
 export const EmojiContext = createContext();
 
 export const EmojiProvider = (props) => {
-    const [currentEmoji, setCurrentEmoji] = useState({});
+    const [currentEmoji, setCurrentEmoji] = useState('smiley');
 
-    const handleChangeEmoji = (emoji) => {
-        setCurrentEmoji(emoji);
+    const handleChangeEmoji = () => {
+        currentEmoji === 'smiley' ? setCurrentEmoji('sad') : setCurrentEmoji('smiley');
     }
 
     return (

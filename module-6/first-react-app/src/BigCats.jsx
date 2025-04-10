@@ -16,7 +16,7 @@ export function BigCats(props) {
     const [currentCats, setCurrentCats] = useState(catArray);
 
 
-    const handleAddCat = (newCat) => {
+    const onAddCat = (newCat) => {
         newCat.id = currentCats.length + 1;
         setCurrentCats([...currentCats, newCat]);
     }

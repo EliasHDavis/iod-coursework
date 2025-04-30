@@ -1,0 +1,1 @@
+//moduleC index.js file

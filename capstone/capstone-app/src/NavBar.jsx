@@ -5,7 +5,7 @@ export default function NavBar() {
         // <div id="blockContainer">
             <div className="navContainer">
                 <div className="logoTitle">
-                    <NavLink to="/"><h1>UnCharted</h1></NavLink>
+                    <NavLink className="title" to="/"><h1>UnCharted</h1></NavLink>
                 </div>
                 <div className="navLinks">
                     <a href="">link</a>

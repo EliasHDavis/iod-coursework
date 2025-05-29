@@ -7,6 +7,10 @@ router.get('/', (req, res) => {
     Controllers.userController.getUser(res);
 })
 
+router.post('/login', (req, res) => {
+    Controllers.userController.loginUser(req, res);
+})
+
 router.post('/create', (req, res) => {
     Controllers.userController.createUser(req.body, res);
 })

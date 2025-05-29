@@ -11,12 +11,35 @@ const getUsers = (res) => {
      })
 };
 
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await Models.User.findOne({ email });
+
+    if (!user) {
+      return res.status(401).json({ result: 401, error: 'User not found' });
+    }
+
+    const isMatch = password == user.password//await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ result: 401, error: 'Invalid password' });
+    }
+
+    // Optional: generate token here (JWT) if you're building auth
+    res.status(200).json({ result: 200, data: user });
+  } catch (err) {
+    res.status(500).json({ result: 500, error: err.message });
+  }
+};
+
+
 // creates a new user using JSON data POSTed in request body
 const createUser = (data, res) => {
     console.log(data)
     new Models.User(data)
         .save()
-        .then(data => res.send({result: 200, data: data}))
+        .then(data => res.send({result: 201, data: data}))
         .catch(err => {
             console.log(err);
             res.send({result: 500, error: err.message})
@@ -46,6 +69,7 @@ const deleteUser = (req, res) => {
 
 module.exports = {
     getUsers,
+    loginUser,
     createUser,
     updateUser,
     deleteUser

@@ -9,14 +9,22 @@ const chartSchema = new Schema({
         tempo: String, 
         timeSig: String, 
         title: String, 
-        author: String}, required: true},
+        author: String
+        }, required: true},
     sectioning: { type: [String], required: true},
     body: { type: [{
         line: Number,
         value: Number,
         length: String,
         modifier: String
-    }], required: true}
+        }], required: true},
+    createdAt: {type: Date, default: Date.now, immutable: true},
+    updatedAt: {type: Date, default: Date.now}
 })
+
+//chartSchema.pre("save", function(new) {
+//  this.updatedAt = Date.now()
+//  new()
+//})
 
 module.exports = mongoose.model("chart", chartSchema);

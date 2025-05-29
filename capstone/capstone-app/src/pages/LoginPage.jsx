@@ -10,7 +10,7 @@ export default function LoginPage() {
     const {loading, error, data} = useFetch(url)
 
     if (data) {
-         const res = {data}
+        const res = {data}
         if ( res.userID == userEmail && res.password == userPassword ){
             
             //send user to userPage with personal data
@@ -25,8 +25,8 @@ export default function LoginPage() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        setUrl('someUrl')
-      
+        setUrl('http/:localhost8080/api/users/login')
+        // useFetch(url, {email: userEmail, password: userPassword})
     }
 
     // async function handleSignUp(e) {

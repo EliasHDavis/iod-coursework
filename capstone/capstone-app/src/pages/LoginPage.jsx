@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { useFetch } from "../useFetch"
+import { useQuery } from "../useQuery"
+import "../login.css"
 
 export default function LoginPage() {
 
@@ -7,7 +8,7 @@ export default function LoginPage() {
     const [userPassword, setUserPassword] = useState('')
     const [url, setUrl] = useState('')
     
-    const {loading, error, data} = useFetch(url)
+    const {loading, error, data} = useQuery(url)
 
     if (data) {
         const res = {data}
@@ -25,8 +26,14 @@ export default function LoginPage() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        setUrl('http/:localhost8080/api/users/login')
-        // useFetch(url, {email: userEmail, password: userPassword})
+        const options = {
+            method: POST,
+            body: {
+                email: userEmail,
+                password: userPassword
+            }
+        }
+        setUrl('http/:localhost8080/api/users/login', options)
     }
 
     // async function handleSignUp(e) {

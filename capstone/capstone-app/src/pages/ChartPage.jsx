@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useFetch } from "../useQuery"
+import { useQuery } from "../useQuery"
 import '../Chart.css'
 
 
@@ -13,6 +13,10 @@ export default function ChartPage() {
 
     const [rows, setRows] = useState([])
     const [headers, setHeaders] = useState([])
+
+    const [url, setUrl] = useState('')
+    const [options, setOptions] = useState('')
+    const {loading, error, data} = useQuery(url, options)
 
     //handle if user is loading data or have seperate page and make components to fill each
 
@@ -41,16 +45,20 @@ export default function ChartPage() {
         console.log(rows)
     };
 
-    const handleAddChord = () => {
-        return (
-            <div className="chord" ></div>
-        )
-    }
 
-    // const handleSaveChart = (user, top, left, right) => {
-    //   setUrl("http:localhost/api/charts/:user", {top, left, right})
-    // }
-    // 
+    const handleSaveChart = () => {
+        const payload = { 
+                    header: { key: key, tempo: tempo, timeSig: timeSig, title: title, author: author },
+                    sectioning: headers, 
+                    body: rows 
+                }
+        setUrl(`http://localhost/api/charts/${userId}`)
+        setOptions({
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(payload)})
+    } 
+    
 
     return (
         <div id="chartContainer">
@@ -74,7 +82,7 @@ export default function ChartPage() {
 
             {/* User Interface Buttons */}
             <div className='uiBar'>
-                <h1>Save</h1>
+                <h1 onClick={handleSaveChart}>Save</h1>
                 <div className="uiButtonContainer" onClick={null}>blue</div>
                 <div className="uiButtonContainer" onClick={null}>brown</div>
                 <div className="uiButtonContainer" onClick={null}>black</div>

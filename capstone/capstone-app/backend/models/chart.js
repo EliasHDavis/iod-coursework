@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const chartSchema = new Schema({
-    ownerId: { Type: mongoose.SchemaTypes.ObjectID, ref:"user"},
+    ownerId: { type: mongoose.SchemaTypes.ObjectID, ref:"user"},
     header: { type: {
         key: String, 
         tempo: String, 
@@ -22,9 +22,11 @@ const chartSchema = new Schema({
     updatedAt: {type: Date, default: Date.now}
 })
 
+
+
+module.exports = mongoose.model("chart", chartSchema);
+
 //chartSchema.pre("save", function(new) {
 //  this.updatedAt = Date.now()
 //  new()
 //})
-
-module.exports = mongoose.model("chart", chartSchema);

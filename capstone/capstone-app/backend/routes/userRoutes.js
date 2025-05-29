@@ -4,7 +4,7 @@ let router = express.Router();
 let Controllers = require("../controllers");
 
 router.get('/', (req, res) => {
-    Controllers.userController.getUser(res);
+    Controllers.userController.getUsers(res);
 })
 
 router.post('/login', (req, res) => {

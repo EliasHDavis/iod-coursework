@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom'
-import './App.css'
+import './Styles/App.css'
 import AppRoutes from './routes/AppRoutes'
 import NavBar from './NavBar'
 import Footer from './Footer'

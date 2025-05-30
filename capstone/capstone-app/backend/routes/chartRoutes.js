@@ -5,8 +5,12 @@ let Controllers = require("../controllers");
 
 //get all of a user's charts route
 
-router.get('/', (req, res) => {
-    Controllers.chartController.getChart(res);
+router.get('/allCharts', (req, res) => {
+    Controllers.chartController.getCharts(res);
+})
+
+router.get('/:id', (req, res) => {
+    Controllers.chartController.getChartById(req, res);
 })
 
 router.post('/create', (req, res) => {

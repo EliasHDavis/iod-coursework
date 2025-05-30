@@ -1,5 +1,5 @@
 let desk = "./././desk.jpg"
-import "../Home.css"
+import "../Styles/Home.css"
 
 export default function HomePage() {
     return (

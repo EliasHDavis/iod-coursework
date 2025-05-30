@@ -2,7 +2,7 @@
 
 const Mongoose = require('mongoose');
 // if the connection fails, try 127.0.0.1 instead of localhost below
-const uri = process.env.DB_URI || "mongodb://localhost/myCapstoneDatabase";
+const uri = process.env.DB_URI || "mongodb://127.0.0.1/myCapstoneDatabase";
 
 // Connect to MongoDB
 Mongoose.connect(uri)

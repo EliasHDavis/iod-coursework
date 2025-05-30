@@ -1,6 +1,7 @@
 const express = require("express");
 const dbConnect = require("./dbConnect");
 const userRoutes = require('./routes/userRoutes');
+const chartRoutes = require('./routes/chartRoutes')
 
 const app = express();
 
@@ -9,6 +10,7 @@ require("dotenv").config();
 
 app.use(express.json());
 app.use('/api/users', userRoutes);
+app.use('/api/charts', chartRoutes);
 
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to my MongoDB application." });

@@ -11,6 +11,16 @@ const getCharts = (res) => {
      })
 };
 
+const getChartById = (req, res) => {
+    const { id } = req.params
+    Models.Chart.findById(id)
+        .then(data => res.send({result: 200, data: data}))
+        .catch(err => {
+            console.log(err);
+            res.send({result: 500, error: err.message})
+     })
+};
+
 // creates a new Chart using JSON data POSTed in request body
 const createChart = (data, res) => {
     console.log(data)
@@ -46,6 +56,7 @@ const deleteChart = (req, res) => {
 
 module.exports = {
     getCharts,
+    getChartById,
     createChart,
     updateChart,
     deleteChart

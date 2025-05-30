@@ -24,7 +24,7 @@ export function useQuery(url, options = {}){
           }
         };
 
-        if (url){
+        if (url && options){
     queryData(); 
         }
 

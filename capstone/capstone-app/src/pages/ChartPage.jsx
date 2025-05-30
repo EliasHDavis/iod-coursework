@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useQuery } from "../useQuery"
-import '../Chart.css'
+import "../Styles/Chart.css"
 
 
 export default function ChartPage() {
@@ -52,11 +52,12 @@ export default function ChartPage() {
                     sectioning: headers, 
                     body: rows 
                 }
-        setUrl(`http://localhost/api/charts/${userId}`)
+        setUrl("http://localhost:8080/api/charts/create"),
         setOptions({
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(payload)})
+                body: JSON.stringify(payload)
+            })
     } 
     
 

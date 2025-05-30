@@ -1,14 +1,15 @@
 import { useState } from "react"
 import { useQuery } from "../useQuery"
-import "../login.css"
+import "../Styles/login.css"
 
 export default function LoginPage() {
 
     const [userEmail, setUserEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
     const [url, setUrl] = useState('')
+    const [options, setOptions] = useState({})
     
-    const {loading, error, data} = useQuery(url)
+    const {loading, error, data} = useQuery(url, options)
 
     if (data) {
         const res = {data}
@@ -26,14 +27,19 @@ export default function LoginPage() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const options = {
+        const payload = {
             method: POST,
             body: {
                 email: userEmail,
                 password: userPassword
             }
         }
-        setUrl('http/:localhost8080/api/users/login', options)
+        setUrl('http//:localhost8080/api/users/login')
+        setOptions({
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(payload)
+            })
     }
 
     // async function handleSignUp(e) {

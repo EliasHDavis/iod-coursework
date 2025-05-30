@@ -11,13 +11,14 @@ const chartSchema = new Schema({
         title: String, 
         author: String
         }, required: true},
-    sectioning: { type: [String], required: true},
-    body: { type: [{
-        line: Number,
-        value: Number,
-        length: String,
-        modifier: String
-        }], required: true},
+    sectioning: { type: [String]},
+    body: {type: [String]}, 
+    // { type: [{
+    //     line: Number,
+    //     value: Number,
+    //     length: String,
+    //     modifier: String
+    //     }]},
     createdAt: {type: Date, default: Date.now, immutable: true},
     updatedAt: {type: Date, default: Date.now}
 })

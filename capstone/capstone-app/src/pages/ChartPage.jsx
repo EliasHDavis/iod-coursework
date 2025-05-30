@@ -14,9 +14,11 @@ export default function ChartPage() {
     const [rows, setRows] = useState([])
     const [headers, setHeaders] = useState([])
 
-    const [url, setUrl] = useState('')
-    const [options, setOptions] = useState('')
-    const {loading, error, data} = useQuery(url, options)
+    const [requestConfig, setRequestConfig] = useState({
+        url: '',
+        options: {}
+    });
+    const {loading, error, data} = useQuery(requestConfig)
 
     //handle if user is loading data or have seperate page and make components to fill each
 
@@ -52,13 +54,14 @@ export default function ChartPage() {
                     sectioning: headers, 
                     body: rows 
                 }
-        setUrl("http://localhost:8080/api/charts/create"),
-        setOptions({
+        setRequestConfig({
+            url: "http://localhost:8080/api/charts/create",
+            options: {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(payload)
-            })
-    } 
+            }}
+    )} 
     
 
     return (

@@ -1,12 +1,17 @@
 const express = require("express");
+const cors = require("cors");
 const dbConnect = require("./dbConnect");
 const userRoutes = require('./routes/userRoutes');
-const chartRoutes = require('./routes/chartRoutes')
+const chartRoutes = require('./routes/chartRoutes');
 
 const app = express();
 
 require("dotenv").config();
 // parse requests of content-type - application/json
+
+// Enable cors
+app.use(cors());
+
 
 app.use(express.json());
 app.use('/api/users', userRoutes);

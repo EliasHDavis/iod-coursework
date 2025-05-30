@@ -1,7 +1,11 @@
 let desk = "./././desk.jpg"
 import "../Styles/Home.css"
+import { useQuery } from "../useQuery"
 
 export default function HomePage() {
+
+    
+
     return (
         <div id="homeBackground">
             <div className="homeContainer">

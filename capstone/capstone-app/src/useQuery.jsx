@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useQuery(url, options = {}){
+export function useQuery(requestConfig){
 
     const [ data, setData ] = useState({})
     const [ loading, setLoading ] = useState(true)
@@ -11,7 +11,7 @@ export function useQuery(url, options = {}){
         const queryData = async () => {
           setLoading(true);
           try {
-            const response = await fetch(url, options)
+            const response = await fetch(requestConfig.url, requestConfig.options)
             if (!response.ok) {
               throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -24,11 +24,11 @@ export function useQuery(url, options = {}){
           }
         };
 
-        if (url && options){
+        if (requestConfig){
     queryData(); 
         }
 
-    }, [url, options]); 
+    }, [requestConfig]); 
 
     return  {
       loading, 

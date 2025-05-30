@@ -15,7 +15,7 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await Models.User.findOne({ email });
+    const user = await Models.User.findOne({ emailId: email });
 
     if (!user) {
       return res.status(401).json({ result: 401, error: 'User not found' });

@@ -1,46 +1,54 @@
-import { useState } from "react"
+import { useState, useContext, useEffect } from "react"
 import { useQuery } from "../useQuery"
 import "../Styles/login.css"
+import { UserContext } from "../UserContext"
 
 export default function LoginPage() {
 
+    const {user, login} = useContext(UserContext)
+
     const [userEmail, setUserEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
-    const [url, setUrl] = useState('')
-    const [options, setOptions] = useState({})
-    
-    const {loading, error, data} = useQuery(url, options)
 
-    if (data) {
-        const res = {data}
-        if ( res.userID == userEmail && res.password == userPassword ){
-            
-            //send user to userPage with personal data
-            console.log({data})
-        } else {
-            console.log("No user found")
-        }
-    }
+    const [requestConfig, setRequestConfig] = useState({
+        url: '',
+        options: {}
+    });
+    
+    const {loading, error, data} = useQuery(requestConfig)
+
+
 
     //valid email function
     //valid password function
 
     async function handleSubmit(e) {
         e.preventDefault();
+
         const payload = {
-            method: POST,
-            body: {
-                email: userEmail,
-                password: userPassword
-            }
+            email: userEmail,
+            password: userPassword
         }
-        setUrl('http//:localhost8080/api/users/login')
-        setOptions({
+
+        setRequestConfig({ 
+            url:'http://localhost:8080/api/users/login',
+            options: {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(payload)
-            })
+            }
+        })
     }
+
+    useEffect(() => {
+        if (data?.data) {
+        login(data.data.emailId); 
+            console.log("Login successful:", data.data);
+        } else if (error) {
+            console.error("Login failed:", error);
+        }
+        }, [data, error]);
+       
 
     // async function handleSignUp(e) {
     //     e.preventDefault();

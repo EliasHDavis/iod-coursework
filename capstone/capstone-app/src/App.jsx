@@ -3,6 +3,7 @@ import './Styles/App.css'
 import AppRoutes from './routes/AppRoutes'
 import NavBar from './NavBar'
 import Footer from './Footer'
+import { UserProvider } from './UserContext'
 
 
 function App() {
@@ -10,9 +11,11 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar />
-        <AppRoutes />
-        <Footer />
+        <UserProvider>
+          <NavBar />
+          <AppRoutes />
+          <Footer />
+        </UserProvider>
       </BrowserRouter>
     </>
   )

@@ -4,7 +4,11 @@ import { useContext } from "react"
 
 export default function NavBar() {
 
-    const {user} = useContext(UserContext)
+    const {user, logout} = useContext(UserContext)
+
+    const loggedIn = user ? 
+    <NavLink to="/login"><button className="login" onClick={logout}>Log Out</button></NavLink> :
+    <NavLink to="/login"><button className="login" >Log In</button></NavLink>
 
     return(
         // <div id="blockContainer">
@@ -18,7 +22,8 @@ export default function NavBar() {
                     <button onClick={()=>console.log(user)}>user</button>
                 </div>
                 <div className="navButtons">
-                    <NavLink to="/login"><button className="login">Login</button></NavLink>
+                    {loggedIn}
+                    {/* <NavLink to="/login"><button className="login">{loggedIn}</button></NavLink> */}
                     <NavLink to="/login"><button className="signUp">Sign Up</button></NavLink>
                 </div>
             </div>

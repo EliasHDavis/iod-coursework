@@ -38,6 +38,30 @@ export default function LoginPage() {
                 body: JSON.stringify(payload)
             }
         })
+
+        setUserEmail("")
+        setUserPassword("")
+    }
+
+    async function handleSignUp(e) {
+        e.preventDefault();
+        
+        const payload = {
+            emailId: userEmail,
+            password: userPassword
+        }
+
+        setRequestConfig({ 
+            url:'http://localhost:8080/api/users/create',
+            options: {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(payload)
+            }
+        })
+
+        setUserEmail("")
+        setUserPassword("")
     }
 
     useEffect(() => {
@@ -50,15 +74,7 @@ export default function LoginPage() {
         }, [data, error]);
        
 
-    // async function handleSignUp(e) {
-    //     e.preventDefault();
-    //     try {
-    //         //If sign up is clicked post to database using email and password
-    //         //if user exists reurn 'User exists, try signing in' 
-    //     } catch (error) {
-            
-    //     }
-    // }
+
 
     return (
         <div id="loginContainer">
@@ -78,7 +94,7 @@ export default function LoginPage() {
 
                 <div className="loginButtons">
                     <button type="submit">Sign In</button>  
-                    <button >Sign Up</button>  
+                    <button onClick={handleSignUp}>Sign Up</button>  
                 </div>
             </form>
         </div>

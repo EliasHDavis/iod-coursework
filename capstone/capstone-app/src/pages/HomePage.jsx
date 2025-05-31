@@ -1,16 +1,51 @@
 let desk = "./././desk.jpg"
 import "../Styles/Home.css"
+import { useState, useContext, useEffect } from "react" 
 import { useQuery } from "../useQuery"
+import { UserContext } from "../UserContext"
 
 export default function HomePage() {
 
-    
+    const {user} = useContext(UserContext);
+    const [requestConfig, setRequestConfig] = useState({
+            url: '',
+            options: {}
+        });
+    const {loading, error, data} = useQuery(requestConfig)
+    const [userCharts, setUserCharts] = useState([])
+
+    let res = "Show Charts"
+
+    const getCharts = () => {
+        if(user){
+            setRequestConfig({
+                url: 'http://localhost:8080/api/charts/allCharts',
+                options: {
+                    method: 'GET',
+                }
+            })
+        }
+    }
+
+    useEffect(() => {
+        if (data?.data) {
+            setUserCharts(data.data) 
+            console.log("Charts:", data.data);
+        } else if (error) {
+            console.error("Failed get:", error);
+        }
+        }, [data, error]);
+
+    const goToChart = () => {
+        //set chart context to chart id and go to chart page
+    }
 
     return (
         <div id="homeBackground">
             <div className="homeContainer">
                 <div className='chartBar'>
-
+                    <button onClick={getCharts}>Show Charts</button>
+                    {userCharts.map((chart) => <h3 key={Date.now()} className="chartName" onClick={goToChart}>{chart.header.title}</h3>)}
                 </div>
 
                 <div className='heroInfo'>

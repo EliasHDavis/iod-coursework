@@ -4,6 +4,7 @@ import AppRoutes from './routes/AppRoutes'
 import NavBar from './NavBar'
 import Footer from './Footer'
 import { UserProvider } from './UserContext'
+import { ChartProvider } from './ChartContext'
 
 
 function App() {
@@ -12,9 +13,11 @@ function App() {
     <>
       <BrowserRouter>
         <UserProvider>
-          <NavBar />
-          <AppRoutes />
-          <Footer />
+          <ChartProvider>
+            <NavBar />
+            <AppRoutes />
+            <Footer />
+          </ChartProvider>
         </UserProvider>
       </BrowserRouter>
     </>

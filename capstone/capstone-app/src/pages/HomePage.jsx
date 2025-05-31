@@ -3,9 +3,12 @@ import "../Styles/Home.css"
 import { useState, useContext, useEffect } from "react" 
 import { useQuery } from "../useQuery"
 import { UserContext } from "../UserContext"
+import { ChartContext } from "../ChartContext"
+
 
 export default function HomePage() {
 
+    const {chartId, getChartId} = useContext(ChartContext);
     const {user} = useContext(UserContext);
     const [requestConfig, setRequestConfig] = useState({
             url: '',
@@ -36,8 +39,9 @@ export default function HomePage() {
         }
         }, [data, error]);
 
-    const goToChart = () => {
-        //set chart context to chart id and go to chart page
+    const goToChart = (title) => {
+        getChartId(title)
+        console.log(chartId)
     }
 
     return (
@@ -45,7 +49,7 @@ export default function HomePage() {
             <div className="homeContainer">
                 <div className='chartBar'>
                     <button onClick={getCharts}>Show Charts</button>
-                    {userCharts.map((chart) => <h3 key={Date.now()} className="chartName" onClick={goToChart}>{chart.header.title}</h3>)}
+                    {userCharts.map((chart) => <h3 key={Date.now()} className="chartName" onClick={() => goToChart(chart._id)}>{chart.header.title}</h3>)}
                 </div>
 
                 <div className='heroInfo'>

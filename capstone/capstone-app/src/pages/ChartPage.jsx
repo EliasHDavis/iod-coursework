@@ -1,9 +1,14 @@
-import { useState } from "react"
+import { useState, useContext, useEffect } from "react"
 import { useQuery } from "../useQuery"
 import "../Styles/Chart.css"
+import { ChartProvider } from "../ChartContext"
+import { UserProvider } from "../UserContext"
 
 
 export default function ChartPage() {
+
+    const user = useContext(UserProvider)
+    const chartId = useContext(ChartProvider)
 
     const [key, handleChangeKey] = useState("Key")
     const [tempo, handleChangeTempo] = useState("Tempo")
@@ -47,26 +52,52 @@ export default function ChartPage() {
         console.log(rows)
     };
 
+    // const render = chartId ? 
+    //     <div onClick={()=>setRequestConfig()}>Load Data</div> : 
+    //     false;
 
     const handleSaveChart = () => {
         const payload = { 
+                    ownerId: user,
                     header: { key: key, tempo: tempo, timeSig: timeSig, title: title, author: author },
                     sectioning: headers, 
                     body: rows 
                 }
-        setRequestConfig({
-            url: "http://localhost:8080/api/charts/create",
-            options: {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(payload)
-            }}
-    )} 
-    
+         if(chartId) {
+            setRequestConfig({
+                ownerId: user,
+                url: `http://localhost:8080/api/charts/${chartId}`,
+                options: {
+                    method: "PUT",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(payload)
+                }
+            }) 
+         } else {
+            setRequestConfig({
+                url: "http://localhost:8080/api/charts/create",
+                options: {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(payload)
+                }
+            }) 
+        } 
+    }
+
+    useEffect(() => {
+        if (data?.data) {
+            console.log("Chart successful:", data.data);
+            if (chartId) {
+                console.log('help')
+            }
+        } else if (error) {
+            console.error("Chart failed:", error);
+        }
+        }, [data, error]);
 
     return (
         <div id="chartContainer">
-            {/* Title section and page header */}
            <div className='titleBar'>
                 <div className="titleLeft">
                     <input type="text" value={key} onChange={(e)=>handleChangeKey(e.target.value)} />
@@ -83,7 +114,6 @@ export default function ChartPage() {
         
         {/* Everything below title */}
         <div className="lower">
-
             {/* User Interface Buttons */}
             <div className='uiBar'>
                 <h1 onClick={handleSaveChart}>Save</h1>

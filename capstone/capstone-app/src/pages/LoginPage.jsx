@@ -66,7 +66,7 @@ export default function LoginPage() {
 
     useEffect(() => {
         if (data?.data) {
-        login(data.data.emailId); 
+        login(data.data._id); 
             console.log("Login successful:", data.data);
         } else if (error) {
             console.error("Login failed:", error);

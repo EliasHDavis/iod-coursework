@@ -4,11 +4,11 @@ import Homepage from "../pages/HomePage";
 import DashboardPage, { DashboardMessages, DashboardTasks } from "../pages/DashboardPage";
 import PageNotFound from "../pages/PageNotFound";
 import { BitcoinRates } from "../BitcoinRates";
-import { BigCats } from "../BigCats";
 import { Emoji } from "../Emoji";
 import { LoginForm } from "../pages/LoginForm";
 import ProtectedRoute from "./ProtectedRoutes";
 import PostsPage, { Post, PostList } from "../pages/PostsPage"
+import BigCats from "../BigCats";
 
 
 

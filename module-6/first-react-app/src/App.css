@@ -5,6 +5,12 @@
   text-align: center;
 }
 
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+}
+
 .NavBar {
   background-color: rgb(78, 94, 104);
   position: absolute;
@@ -31,4 +37,12 @@
 
 .NavBar ul li a.active {
   font-weight: bold;
+}
+
+#footer {
+  background-color: rgb(78, 94, 104);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }

@@ -1,6 +1,7 @@
 let desk = "./././desk.jpg"
 import "../Styles/Home.css"
 import { useState, useContext, useEffect } from "react" 
+import { v4 as uuidv4 } from 'uuid';
 import { useQuery } from "../useQuery"
 import { UserContext } from "../UserContext"
 import { ChartContext } from "../ChartContext"
@@ -17,31 +18,34 @@ export default function HomePage() {
     const {loading, error, data} = useQuery(requestConfig)
     const [userCharts, setUserCharts] = useState([])
 
-    let res = "Show Charts"
 
     const getCharts = () => {
-        if(user){
+        console.log("User Charts: ", userCharts)
+        if(user && userCharts.length === 0){
             setRequestConfig({
                 url: 'http://localhost:8080/api/charts/allCharts',
                 options: {
                     method: 'GET',
                 }
             })
-        }
+            
+        } 
     }
 
-    useEffect(() => {
-        if (data?.data) {
-            setUserCharts(data.data) 
+    useEffect(() => {        
+        if (data?.data && userCharts.length === 0) {
+            setUserCharts(data.data)
             console.log("Charts:", data.data);
         } else if (error) {
             console.error("Failed get:", error);
         }
-        }, [data, error]);
+    },[data, error])
+        
 
     const goToChart = (title) => {
+        console.log("User Charts: ", userCharts)
         getChartId(title)
-        console.log(chartId)
+        console.log("Chart Id: ", chartId)
     }
 
     return (
@@ -49,7 +53,9 @@ export default function HomePage() {
             <div className="homeContainer">
                 <div className='chartBar'>
                     <button onClick={getCharts}>Show Charts</button>
-                    {userCharts.map((chart) => <h3 key={Date.now()} className="chartName" onClick={() => goToChart(chart._id)}>{chart.header.title}</h3>)}
+                    <div>
+                        {userCharts.map((chart) => <h3 key={uuidv4()} className="chartName" onClick={() => goToChart(chart)}>{chart.header.title}</h3>)}
+                    </div>
                 </div>
 
                 <div className='heroInfo'>

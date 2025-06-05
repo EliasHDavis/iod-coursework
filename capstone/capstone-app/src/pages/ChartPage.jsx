@@ -1,20 +1,22 @@
 import { useState, useContext, useEffect } from "react"
+import { v4 as uuidv4 } from 'uuid';
 import { useQuery } from "../useQuery"
 import "../Styles/Chart.css"
-import { ChartProvider } from "../ChartContext"
-import { UserProvider } from "../UserContext"
+import { ChartContext, ChartProvider } from "../ChartContext"
+import { UserContext, UserProvider } from "../UserContext"
+
 
 
 export default function ChartPage() {
 
-    const user = useContext(UserProvider)
-    const chartId = useContext(ChartProvider)
+    const {user} = useContext(UserContext)
+    const {chartId} = useContext(ChartContext)
 
-    const [key, handleChangeKey] = useState("Key")
-    const [tempo, handleChangeTempo] = useState("Tempo")
-    const [timeSig, handleChangeTimeSig] = useState("Time Signature")
-    const [title, handleChangeTitle] = useState("Title")
-    const [author, handleChangeAuthor] = useState("Author")
+    const [key, setChangeKey] = useState("Key")
+    const [tempo, setChangeTempo] = useState("Tempo")
+    const [timeSig, setChangeTimeSig] = useState("Time Signature")
+    const [title, setChangeTitle] = useState("Title")
+    const [author, setChangeAuthor] = useState("Author")
 
     const [rows, setRows] = useState([])
     const [headers, setHeaders] = useState([])
@@ -25,10 +27,8 @@ export default function ChartPage() {
     });
     const {loading, error, data} = useQuery(requestConfig)
 
-    //handle if user is loading data or have seperate page and make components to fill each
-
     const handleAddHeader = () => {
-        const newHeader = { id: Date.now(), value: "" }
+        const newHeader = { id: uuidv4(), value: "" }
         setHeaders(headers => [...headers, newHeader])
     }
 
@@ -40,8 +40,7 @@ export default function ChartPage() {
     };
 
     const handleAddRow = () => {
-        //Add array to data
-        const newRow = { id: Date.now(), value: "" }
+        const newRow = { id: uuidv4(), value: "" }
         setRows(rows => [...rows, newRow])
     }
 
@@ -52,9 +51,6 @@ export default function ChartPage() {
         console.log(rows)
     };
 
-    // const render = chartId ? 
-    //     <div onClick={()=>setRequestConfig()}>Load Data</div> : 
-    //     false;
 
     const handleSaveChart = () => {
         const payload = { 
@@ -65,8 +61,7 @@ export default function ChartPage() {
                 }
          if(chartId) {
             setRequestConfig({
-                ownerId: user,
-                url: `http://localhost:8080/api/charts/${chartId}`,
+                url: `http://localhost:8080/api/charts/${chartId._id}`,
                 options: {
                     method: "PUT",
                     headers: {"Content-Type": "application/json"},
@@ -86,13 +81,23 @@ export default function ChartPage() {
     }
 
     useEffect(() => {
+        console.log(chartId)
+        if (chartId) {
+            setChangeKey(chartId.header.key)
+            setChangeTempo(chartId.header.tempo)
+            setChangeTimeSig(chartId.header.timeSig)
+            setChangeTitle(chartId.header.title)
+            setChangeAuthor(chartId.header.author)
+            setHeaders(chartId.sectioning)
+            setRows(chartId.body)
+        }
+    }, [chartId]);
+
+    useEffect(() => {
         if (data?.data) {
-            console.log("Chart successful:", data.data);
-            if (chartId) {
-                console.log('help')
-            }
+            console.log("Chart Saved successfully: ", data.data);
         } else if (error) {
-            console.error("Chart failed:", error);
+            console.error("Chart failed to save: ", error);
         }
         }, [data, error]);
 
@@ -100,15 +105,15 @@ export default function ChartPage() {
         <div id="chartContainer">
            <div className='titleBar'>
                 <div className="titleLeft">
-                    <input type="text" value={key} onChange={(e)=>handleChangeKey(e.target.value)} />
-                    <input type="text" value={tempo} onChange={(e)=>handleChangeTempo(e.target.value)} />
-                    <input type="text" value={timeSig} onChange={(e)=>handleChangeTimeSig(e.target.value)} />
+                    <input type="text" value={key} onChange={(e)=>setChangeKey(e.target.value)} />
+                    <input type="text" value={tempo} onChange={(e)=>setChangeTempo(e.target.value)} />
+                    <input type="text" value={timeSig} onChange={(e)=>setChangeTimeSig(e.target.value)} />
                 </div>
 
                 <div className="titleCenter">
-                    <input type="text" value={title} onChange={(e)=>handleChangeTitle(e.target.value)} />
+                    <input type="text" value={title} onChange={(e)=>setChangeTitle(e.target.value)} />
                     <p className="item">by</p>
-                    <input type="text" value={author} onChange={(e)=>handleChangeAuthor(e.target.value)} />
+                    <input type="text" value={author} onChange={(e)=>setChangeAuthor(e.target.value)} />
                 </div>
             </div>
         

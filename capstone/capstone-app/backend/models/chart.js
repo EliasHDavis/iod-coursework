@@ -12,11 +12,11 @@ const chartSchema = new Schema({
         author: String
         }, required: true},
     sectioning: { type: [{
-        id: Number,
+        id: String,
         value: String
     }]},
     body: {type: [{
-        id: Number,
+        id: String,
         value: String
     }]}, 
     // { type: [{

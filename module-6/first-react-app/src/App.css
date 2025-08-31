@@ -1,0 +1,48 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+}
+
+.NavBar {
+  background-color: rgb(78, 94, 104);
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.NavBar ul {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  padding: 0;
+}
+
+.NavBar ul li a {
+  padding: 1em;
+  color: inherit;
+  text-transform:
+    uppercase;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.NavBar ul li a.active {
+  font-weight: bold;
+}
+
+#footer {
+  background-color: rgb(78, 94, 104);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

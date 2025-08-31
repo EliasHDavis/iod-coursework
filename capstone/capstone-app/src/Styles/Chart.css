@@ -1,0 +1,163 @@
+#chartContainer {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Title Bar */
+.titleBar {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: #3d52a0;
+  color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.titleLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0; /* prevent shrinking */
+}
+
+.titleCenter {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.lower {
+  display: flex;
+  justify-content: start;
+}
+
+/* UI Sidebar */
+.uiBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10%;
+  height: 80vh;
+  background-color: #3d52a0;
+  padding: 1rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.uiButtonContainer {
+  width: 100%;
+  flex: 1;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+  border: 2px solid #ffffff20;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  background-color: #4a64c4;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uiButtonContainer:hover {
+  flex-grow: 2.5;
+  background-color: #2e3e78;
+}
+
+/* Chart Area */
+.chart {
+  background-color: #f4f6fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 80vh;
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.page {
+  width: 90%;
+  height: 60vh;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* Block and Items */
+.block {
+  width: auto;
+  color: black;
+  margin-bottom: 0.75rem;
+  display: flex;
+  background-color: #e9e9e9;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.item {
+  margin: 0.25rem 0;
+}
+
+/* Chart Body and Rows */
+.chartBody {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+}
+
+.chartHeaders {
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  gap: 0.25rem;
+}
+
+.chartRowContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  gap: 0.25rem;
+}
+
+.chartRow,
+.chartHeader {
+  display: flex;
+  align-items: center;
+  min-height: 3.5rem;  
+  padding: 0.75rem 1rem; 
+  background-color: #f0f0f0;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;  
+  gap: 1rem;     
+}
+
+/* Inputs inside chart rows and headers */
+.chartHeader > input,
+.chartRow > input {
+  width: 100%;
+  max-width: 100%;
+  height: 3rem;
+  padding: 0.6rem 0.75rem; 
+  font-size: 1.05rem; 
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+  box-sizing: border-box;
+  flex-shrink: 1;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
